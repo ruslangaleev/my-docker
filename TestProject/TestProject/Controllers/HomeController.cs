@@ -10,7 +10,7 @@ namespace TestProject.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Test Project");
+            return Ok($"Test Project {DateTime.Now}");
         }
     }
 }
