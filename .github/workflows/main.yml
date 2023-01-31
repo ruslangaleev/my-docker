@@ -44,4 +44,4 @@ jobs:
           file: ./TestProject/TestProject/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: '${{ secrets.REGISTRY_URL }}/TestProject'
+          tags: '${{ secrets.REGISTRY_URL }}/TestProject:latest'
