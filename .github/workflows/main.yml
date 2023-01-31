@@ -38,7 +38,9 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       -
         name: SHOW steps.buildx.outputs.name
-        run: steps.buildx.outputs.name
+        env:
+          STEPS_BUILDX_OUTPUTS_NAME: ${{ steps.buildx.outputs.name }}
+        run: echo "$STEPS_BUILDX_OUTPUTS_NAME"
       -
         name: Build and push
         uses: docker/build-push-action@v2
