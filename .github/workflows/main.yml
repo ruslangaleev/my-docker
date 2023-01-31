@@ -44,6 +44,9 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
+        env:
+          STEPS_BUILDX_OUTPUTS_NAME: ${{ steps.buildx.outputs.name }}
+        run: echo "$STEPS_BUILDX_OUTPUTS_NAME"        
         with:
           context: ./TestProject/TestProject
           file: ./TestProject/TestProject/Dockerfile
