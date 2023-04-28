@@ -37,6 +37,7 @@ jobs:
           username: test
           password: testtest
   test:
+    needs: deploy
     name: Test
     runs-on: ubuntu-latest
     # make sure these permissions are set so that
