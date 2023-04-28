@@ -41,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v2    
         with:
           context: ./TestProject/TestProject
-          file: ./TestProject/TestProject/Dockerfile
+          file: ./TestProject/TestProject/Dockerfile.Deploy
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: 'registry.expertcentre.org/testproject:latest'
