@@ -37,17 +37,8 @@ jobs:
           username: test
           password: testtest
       -
-        name: SHOW steps.buildx.outputs.name
-        env:
-          STEPS_BUILDX_OUTPUTS_NAME: ${{ steps.buildx.outputs.name }}
-        run: echo "$STEPS_BUILDX_OUTPUTS_NAME"
-      -
         name: Build and push
-        uses: docker/build-push-action@v2
-        env:
-          STEPS_BUILDX_OUTPUTS_NAME: ${{ steps.buildx.outputs.name }}
-
-        run: echo "$STEPS_BUILDX_OUTPUTS_NAME"        
+        uses: docker/build-push-action@v2    
         with:
           context: ./TestProject/TestProject
           file: ./TestProject/TestProject/Dockerfile
