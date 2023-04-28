@@ -46,7 +46,6 @@ jobs:
           push: true
           tags: 'registry.expertcentre.org/testproject:latest'          
   test:
-    needs: deploy
     name: Test
     runs-on: ubuntu-latest
     # make sure these permissions are set so that
