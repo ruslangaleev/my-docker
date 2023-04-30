@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build TestProject Image
-        run: docker build -f TestProject/Dockerfile .
+        run: docker build -f TestProject/Dockerfile -t testproject:latest .
         working-directory: TestProject
       - name: DOCKER IMAGES
         run: docker images
