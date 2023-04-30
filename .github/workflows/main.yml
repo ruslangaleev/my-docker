@@ -45,6 +45,8 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: 'registry.expertcentre.org/testproject:latest'
+      - name: DOCKER IMAGES
+        run: docker images
   build:
     runs-on: ubuntu-latest
     steps:
