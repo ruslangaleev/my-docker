@@ -46,7 +46,6 @@ jobs:
           push: true
           tags: 'registry.expertcentre.org/testproject:latest'
   build:
-    needs: deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
