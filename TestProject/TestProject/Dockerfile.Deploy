@@ -5,13 +5,12 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src/TestProject # в контейнере переключаемся на рабочую папку src. Если папки нет, то создает
+WORKDIR /src
+COPY ["TestProject/TestProject/TestProject.csproj", "TestProject/"]
+RUN dotnet restore "TestProject/TestProject.csproj"
 COPY . .
-#COPY ["TestProject.csproj", "TestProject/"] # Копируем проект из хоста в контейнер в папку TestProject. Если папки нет, то создает
-RUN dotnet restore "TestProject.csproj" # Запускает fotnet restore в контейнере
-#COPY . . # Копирует содержмое с хоста в контейнер в папку src
-#WORKDIR "/src/TestProject" # Переключаемся на рабочую папку src/TestProject
-RUN dotnet build "TestProject.csproj" -c Release -o /app/build # запускаем dotnet build в контейнере
+WORKDIR "/src/TestProject"
+RUN dotnet build "TestProject.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "TestProject.csproj" -c Release -o /app/publish
