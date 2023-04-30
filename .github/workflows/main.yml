@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ls
-        run: echo $(ls -1 /tmp/dir)
+        run: echo $(ls)
       - name: cd TestProject directory
         run: cd TestProject
       - name: Build TestProject Image
