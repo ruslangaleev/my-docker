@@ -23,10 +23,10 @@ jobs:
     needs: unit-tests
     runs-on: ubuntu-latest
     steps:
-      - name: cd TestProject directory
-        run: cd ${GITHUB_WORKSPACE}/TestProject
+      - uses: actions/checkout@v3
       - name: Build TestProject Image
         run: docker build -f TestProject/Dockerfile .
+        working-directory: TestProject
       - name: DOCKER IMAGES
         run: docker images
   build:
