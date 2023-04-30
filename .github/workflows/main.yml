@@ -42,7 +42,7 @@ jobs:
         with:
           context: ./TestProject/TestProject
           file: ./TestProject/TestProject/Dockerfile.Deploy
-          #builder: ${{ steps.buildx.outputs.name }}
+          builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: 'registry.expertcentre.org/testproject:latest'
   build:
