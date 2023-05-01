@@ -55,9 +55,9 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - name: Create latest tag
-        run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject:${{ GITHUB_REF_NAME }}
+        run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject:${{ github.ref_name }}
       - name: Push latest image
-        run: docker push ${{ secrets.REGISTRY_URL }}/testproject:${{ GITHUB_REF_NAME }}
+        run: docker push ${{ secrets.REGISTRY_URL }}/testproject:${{ github.ref_name }}
   build:
     runs-on: ubuntu-latest
     steps:
