@@ -35,6 +35,11 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
+      - name: github.ref
+        run: echo "$githubref"
+        env:
+          githubref: ${{ github.ref }}
+
       - name: Create latest tag
         if: github.ref == 'ref/heads/main'
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
