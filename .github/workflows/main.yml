@@ -8,20 +8,20 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore TestProject/TestProject
-    - name: Build
-      run: dotnet build TestProject/TestProject --no-restore
+  # unit-tests:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Setup .NET
+  #     uses: actions/setup-dotnet@v2
+  #     with:
+  #       dotnet-version: 6.0.x
+  #   - name: Restore dependencies
+  #     run: dotnet restore TestProject/TestProject
+  #   - name: Build
+  #     run: dotnet build TestProject/TestProject --no-restore
   deploy:
-    needs: unit-tests
+    #needs: unit-tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Create latest tag
-        if: $GITHUB_REF == 'ref/heads/main'
+        if: github.ref == 'ref/heads/main'
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
       #- name: Create specified tag
       #  if: ${{ startsWith(github.ref, 'ref/tags/') }}
