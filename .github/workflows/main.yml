@@ -34,9 +34,9 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - name: Create tag
-        run: docker tag testproject registry.expertcentre.org/testproject
+        run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
       - name: Push image
-        run: docker push registry.expertcentre.org/testproject
+        run: docker push ${{ secrets.REGISTRY_URL }}/testproject
   build:
     runs-on: ubuntu-latest
     steps:
