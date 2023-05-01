@@ -16,7 +16,6 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-
     - name: Restore dependencies
       run: dotnet restore TestProject/TestProject
     - name: Build
@@ -35,10 +34,20 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: Create tag
+
+      - name: Create latest tag
+        if: ${{ github.ref == 'ref/heads/main' }}
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
-      - name: Push image
+      - name: Create specified tag
+        if: ${{ github.ref.startsWith('ref/tags/')}}
+        run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject:${{ GITHUB_REF_NAME }}
+
+      - name: Push latest image
+        if: ${{ github.ref == 'ref/heads/main' }}
         run: docker push ${{ secrets.REGISTRY_URL }}/testproject
+      - name: Push specified image
+        if: ${{ github.ref.startsWith('ref/tags/')}}
+        run: docker push ${{ secrets.REGISTRY_URL }}/testproject:${{ GITHUB_REF_NAME }}
   build:
     runs-on: ubuntu-latest
     steps:
