@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Create latest tag
-        if: ${{ github.ref == 'ref/heads/main' }}
+        if: ${{ GITHUB_REF == 'ref/heads/main' }}
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
       #- name: Create specified tag
       #  if: ${{ startsWith(github.ref, 'ref/tags/') }}
