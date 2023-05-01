@@ -39,7 +39,7 @@ jobs:
         if: ${{ github.ref == 'ref/heads/main' }}
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject
       - name: Create specified tag
-        if: ${{ github.ref.startsWith('ref/tags/')}}
+        if: startsWith(github.ref, 'ref/tags/')
         run: docker tag testproject ${{ secrets.REGISTRY_URL }}/testproject:${{ GITHUB_REF_NAME }}
 
       - name: Push latest image
