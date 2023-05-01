@@ -44,6 +44,12 @@ jobs:
         run: echo "${githubref}"
         env:
           githubref: ${{ github.ref }}
+          githubrefmy: ref/heads/main
+
+      - name: github.ref.my
+        run: echo "${githubref}"
+        env:
+          githubref: ref/heads/main       
 
       - name: Create latest tag
         if: github.ref == 'ref/heads/main'
