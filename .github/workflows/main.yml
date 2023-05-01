@@ -20,6 +20,11 @@ jobs:
   #     run: dotnet restore TestProject/TestProject
   #   - name: Build
   #     run: dotnet build TestProject/TestProject --no-restore
+  test:
+    if: github.ref == 'ref/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
   deploy:
     #needs: unit-tests
     runs-on: ubuntu-latest
