@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: github.ref
-        run: echo "$githubref"
+        run: echo "${githubref}"
         env:
           githubref: ${{ github.ref }}
 
